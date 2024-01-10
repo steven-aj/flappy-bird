@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://e01710jfvdop"]
+
+[ext_resource type="Texture2D" uid="uid://c42wnwl08v5dp" path="res://assets/graphics/Background/Background1.png" id="1_satj4"]
+[ext_resource type="Texture2D" uid="uid://cw63d5bveohwd" path="res://assets/graphics/Background/Background2.png" id="2_wfg0y"]
+[ext_resource type="Texture2D" uid="uid://coh62m843deef" path="res://assets/graphics/Background/Background3.png" id="3_v0fli"]
+[ext_resource type="Texture2D" uid="uid://dod72pmlkbhxe" path="res://assets/graphics/Background/Background4.png" id="4_t64r6"]
+[ext_resource type="Texture2D" uid="uid://3gccq6l6t657" path="res://assets/graphics/Background/Background5.png" id="5_vtr8r"]
+
+[sub_resource type="Animation" id="Animation_m7a72"]
+resource_name = "time_cycle"
+length = 150.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LateNight:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60, 150),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Morning:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-1, 30, 60, 90),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.508197), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Afternoon:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 60, 90, 120),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Evening:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 90, 120, 150),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Night:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 120, 150),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_60obh"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r4a3v"]
+_data = {
+"RESET": SubResource("Animation_60obh"),
+"time_cycle": SubResource("Animation_m7a72")
+}
+
+[node name="Background" type="Node2D"]
+
+[node name="Night" type="Sprite2D" parent="."]
+texture = ExtResource("4_t64r6")
+
+[node name="Evening" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3_v0fli")
+
+[node name="Afternoon" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("2_wfg0y")
+
+[node name="LateNight" type="Sprite2D" parent="."]
+texture = ExtResource("5_vtr8r")
+
+[node name="Morning" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("1_satj4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r4a3v")
+}
+autoplay = "time_cycle"

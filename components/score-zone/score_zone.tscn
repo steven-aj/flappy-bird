@@ -1,14 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhn6kduoutysa"]
+[gd_scene load_steps=2 format=3 uid="uid://dhn6kduoutysa"]
 
 [ext_resource type="Script" path="res://components/score-zone/ScoreZone.cs" id="1_cbnwl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5051"]
-size = Vector2(8, 30)
-
 [node name="ScoreZone" type="Area2D"]
 script = ExtResource("1_cbnwl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_q5051")
-
-[connection signal="body_entered" from="." to="." method="OnPlayerEntered"]

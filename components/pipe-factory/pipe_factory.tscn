@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2h2iptvfgoew"]
+
+[ext_resource type="Script" path="res://components/pipe-factory/PipeFactory.cs" id="1_kj4th"]
+[ext_resource type="PackedScene" uid="uid://bwwafipot5gli" path="res://scenes/pipes/red/pipes_red.tscn" id="2_3y3lh"]
+
+[node name="PipeFactory" type="Marker2D"]
+position = Vector2(156, 2.08165e-12)
+script = ExtResource("1_kj4th")
+BluePipes = ExtResource("2_3y3lh")
+minYOffset = -80.0
+maxYOffset = 80.0
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="SpawnPipes"]

@@ -1,20 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://byg2fdu8w5dfi"]
 
+[ext_resource type="Script" path="res://scenes/Game.cs" id="1_2xnd4"]
 [ext_resource type="PackedScene" uid="uid://dex5tjdfuno1i" path="res://scenes/player/player.tscn" id="1_b7elv"]
-[ext_resource type="Texture2D" uid="uid://3gccq6l6t657" path="res://assets/graphics/Background/Background5.png" id="1_jryv1"]
-[ext_resource type="PackedScene" uid="uid://bwwafipot5gli" path="res://scenes/pipes/red/pipes_red.tscn" id="3_brq4u"]
-[ext_resource type="Script" path="res://scenes/pipes/PipeFactory.cs" id="3_f5ggp"]
+[ext_resource type="PackedScene" uid="uid://e01710jfvdop" path="res://scenes/background/background.tscn" id="5_3joe7"]
+[ext_resource type="PackedScene" uid="uid://b2h2iptvfgoew" path="res://components/pipe-factory/pipe_factory.tscn" id="5_boirt"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_2xnd4")
 
-[node name="Background2" type="Sprite2D" parent="."]
-texture = ExtResource("1_jryv1")
+[node name="Background" parent="." instance=ExtResource("5_3joe7")]
 
 [node name="Player" parent="." instance=ExtResource("1_b7elv")]
+flapStrength = 110
+
+[node name="PipeFactory" parent="." instance=ExtResource("5_boirt")]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+offset = Vector2(10, 2.08165e-12)
+transform = Transform2D(1, 0, 0, 1, 10, 2.08165e-12)
+
+[node name="ScoreUI" type="RichTextLabel" parent="GUI"]
+offset_right = 40.0
+offset_bottom = 40.0
+text = "0"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="PipesRed" parent="." instance=ExtResource("3_brq4u")]
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-182, 2.08165e-12)
 
-[node name="PipeFactory" type="Marker2D" parent="."]
-script = ExtResource("3_f5ggp")
+[connection signal="OnIncrementScore" from="Player" to="." method="OnPlayerIncrementScore"]
