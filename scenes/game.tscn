@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://byg2fdu8w5dfi"]
+
+[ext_resource type="PackedScene" uid="uid://dex5tjdfuno1i" path="res://scenes/player/player.tscn" id="1_b7elv"]
+[ext_resource type="Texture2D" uid="uid://3gccq6l6t657" path="res://assets/graphics/Background/Background5.png" id="1_jryv1"]
+[ext_resource type="PackedScene" uid="uid://bwwafipot5gli" path="res://scenes/pipes/red/pipes_red.tscn" id="3_brq4u"]
+[ext_resource type="Script" path="res://scenes/pipes/PipeFactory.cs" id="3_f5ggp"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Background2" type="Sprite2D" parent="."]
+texture = ExtResource("1_jryv1")
+
+[node name="Player" parent="." instance=ExtResource("1_b7elv")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PipesRed" parent="." instance=ExtResource("3_brq4u")]
+
+[node name="PipeFactory" type="Marker2D" parent="."]
+script = ExtResource("3_f5ggp")

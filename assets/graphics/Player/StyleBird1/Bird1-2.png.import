@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://bcxcehoecblb"
+path="res://.godot/imported/Bird1-2.png-4fb7ed8f37b3d4453141d553a97cc6c1.image"
+
+[deps]
+
+source_file="res://assets/graphics/Player/StyleBird1/Bird1-2.png"
+dest_files=["res://.godot/imported/Bird1-2.png-4fb7ed8f37b3d4453141d553a97cc6c1.image"]
+
+[params]
+
