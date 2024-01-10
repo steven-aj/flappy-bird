@@ -6,32 +6,41 @@ public partial class PipeFactory : Marker2D
 	[Export]
 	PackedScene BluePipes;
 
-    [Export]
-    public int spawnDelay = 1000;
-
-    [ExportGroup("Y-axis Offset Range")]
-    [Export]
-	double minOffset = -100;
-
+	[ExportGroup("Y-axis Offset Range")]
 	[Export]
-	double maxOffset = 100;
+	public double minOffset = -100;
+	[Export]
+	public double maxOffset = 100;
 
-    public override void _Ready()
-    {
-        SpawnPipes();
-    }
+	private Timer SpawnTimer;
 
-    private Vector2 GetRandomPosition()
+	private Vector2 GetRandomPosition()
 	{
-		float xPos = Position.X;
+		float xPos = GlobalPosition.X;
 		float yPos = (float)GD.RandRange(minOffset, maxOffset);
 		return new Vector2(xPos, yPos);
 	}
 
-	public void SpawnPipes()
+	private void SpawnPipes()
 	{
-        Node2D Pipes = BluePipes.Instantiate<Node2D>();
+		Node2D Pipes = BluePipes.Instantiate<Node2D>();
 		Pipes.Position = GetRandomPosition();
 		AddChild(Pipes, true);
-    }
+	}
+
+	public override void _Ready()
+	{
+		SpawnTimer = GetNode<Timer>("SpawnTimer");
+	}
+
+	public void Start()
+	{
+		SpawnPipes();
+		SpawnTimer.Start();
+	}
+
+	public void Stop()
+	{
+		SpawnTimer.Stop();
+	}
 }

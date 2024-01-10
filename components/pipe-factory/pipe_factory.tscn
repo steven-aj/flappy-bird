@@ -7,11 +7,8 @@
 position = Vector2(156, 2.08165e-12)
 script = ExtResource("1_kj4th")
 BluePipes = ExtResource("2_3y3lh")
-minYOffset = -80.0
-maxYOffset = 80.0
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
-autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="SpawnPipes"]

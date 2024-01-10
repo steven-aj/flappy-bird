@@ -1,51 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://byg2fdu8w5dfi"]
+[gd_scene load_steps=7 format=3 uid="uid://byg2fdu8w5dfi"]
 
 [ext_resource type="Script" path="res://scenes/Game.cs" id="1_2xnd4"]
 [ext_resource type="PackedScene" uid="uid://dex5tjdfuno1i" path="res://scenes/player/player.tscn" id="1_b7elv"]
 [ext_resource type="PackedScene" uid="uid://e01710jfvdop" path="res://scenes/background/background.tscn" id="5_3joe7"]
 [ext_resource type="PackedScene" uid="uid://b2h2iptvfgoew" path="res://components/pipe-factory/pipe_factory.tscn" id="5_boirt"]
+[ext_resource type="FontFile" uid="uid://bd65r0m3dcl36" path="res://assets/fonts/OpenSans-VariableFont_wdth,wght.ttf" id="5_pmicu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_idma6"]
+font = ExtResource("5_pmicu")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_2xnd4")
+metadata/_edit_vertical_guides_ = [384.0]
+metadata/_edit_horizontal_guides_ = [384.0]
 
 [node name="Background" parent="." instance=ExtResource("5_3joe7")]
-position = Vector2(640, 640)
+position = Vector2(512, 512)
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_b7elv")]
-position = Vector2(640, 640)
+position = Vector2(512, 512)
 flapStrength = 110
 metadata/_edit_lock_ = true
 
 [node name="PipeFactory" parent="." instance=ExtResource("5_boirt")]
-position = Vector2(770, 640)
+position = Vector2(512, 512)
 
 [node name="GUI" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = 640.0
 offset_top = 640.0
 offset_right = 640.0
 offset_bottom = 640.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ScoreUI" type="RichTextLabel" parent="GUI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -122.0
-offset_top = -127.0
-offset_right = 118.0
-offset_bottom = -97.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ScoreLabel" type="Label" parent="GUI"]
+layout_mode = 0
+offset_left = -248.0
+offset_top = -256.0
+offset_right = -238.0
+offset_bottom = -233.0
 text = "0"
+label_settings = SubResource("LabelSettings_idma6")
+
+[node name="PlayButton" type="Button" parent="GUI"]
+layout_mode = 0
+offset_left = -178.0
+offset_top = -97.0
+offset_right = -77.0
+offset_bottom = -66.0
+text = "Play"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(512, 512)
+offset = Vector2(384, 384)
 anchor_mode = 0
-zoom = Vector2(5, 5)
+zoom = Vector2(4, 4)
 
+[connection signal="OnDie" from="Player" to="." method="OnPlayerDie"]
 [connection signal="OnIncrementScore" from="Player" to="." method="OnPlayerIncrementScore"]
+[connection signal="button_up" from="GUI/PlayButton" to="." method="OnPlayButtonClicked"]

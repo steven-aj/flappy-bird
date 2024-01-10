@@ -9,7 +9,7 @@ public partial class Pipes : Node2D
 	[Export]
 	Area2D ScoreZone = null;
 
-    public void SlideLeft(float delta)
+	public void SlideLeft(float delta)
 	{
 		Vector2 Movement = new Vector2(moveSpeed, 0) * delta;
 		Position -= Movement;
@@ -30,8 +30,8 @@ public partial class Pipes : Node2D
 	}
 
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
 	{
 		SlideLeft((float)delta);
 		Despawn();

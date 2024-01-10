@@ -5,19 +5,37 @@ public partial class Game : Node
 {
 	private Player Player;
 	private Control GUI;
-	private RichTextLabel ScoreUI;
+	private Label ScoreLabel;
+	private Button PlayButton;
+	private PipeFactory PipeFactory;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Player = GetNode<Player>("Player");
 		GUI = GetNode<Control>("GUI");
-		ScoreUI = GUI.GetNode<RichTextLabel>("ScoreUI");
+		ScoreLabel = GUI.GetNode<Label>("ScoreLabel");
+		PlayButton = GUI.GetNode<Button>("PlayButton");
+		PipeFactory = GetNode<PipeFactory>("PipeFactory");
+		Player = GetNode<Player>("Player");
+		Player.Idle(true);
+	}
+
+	public void OnPlayButtonClicked() {
+		PlayButton.Visible = false;
+		Player.Reset();
+		Player.Idle(false);
+		PipeFactory.Start();
 	}
 
 	public void OnPlayerIncrementScore(Player Player)
 	{
-        ScoreUI.Text = Player.score.ToString();
+		ScoreLabel.Text = Player.score.ToString();
+	}
+
+	public void OnPlayerDie(Player Player) {
+		PipeFactory.Stop();
+		PlayButton.Text = "Play Again";
+		PlayButton.Visible = true;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
