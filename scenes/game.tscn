@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://byg2fdu8w5dfi"]
+[gd_scene load_steps=6 format=3 uid="uid://byg2fdu8w5dfi"]
 
 [ext_resource type="Script" path="res://scenes/Game.cs" id="1_2xnd4"]
 [ext_resource type="PackedScene" uid="uid://dex5tjdfuno1i" path="res://scenes/player/player.tscn" id="1_b7elv"]
 [ext_resource type="PackedScene" uid="uid://e01710jfvdop" path="res://scenes/background/background.tscn" id="5_3joe7"]
 [ext_resource type="PackedScene" uid="uid://b2h2iptvfgoew" path="res://components/pipe-factory/pipe_factory.tscn" id="5_boirt"]
-[ext_resource type="FontFile" uid="uid://bd65r0m3dcl36" path="res://assets/fonts/OpenSans-VariableFont_wdth,wght.ttf" id="5_pmicu"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_idma6"]
-font = ExtResource("5_pmicu")
+[ext_resource type="PackedScene" uid="uid://blco7lr57qqef" path="res://scenes/gui/gui.tscn" id="5_kl0mx"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_2xnd4")
@@ -24,35 +21,10 @@ flapStrength = 110
 metadata/_edit_lock_ = true
 
 [node name="PipeFactory" parent="." instance=ExtResource("5_boirt")]
-position = Vector2(512, 512)
+position = Vector2(384, 512)
 
-[node name="GUI" type="Control" parent="."]
+[node name="GUI" parent="." instance=ExtResource("5_kl0mx")]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 640.0
-offset_top = 640.0
-offset_right = 640.0
-offset_bottom = 640.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="ScoreLabel" type="Label" parent="GUI"]
-layout_mode = 0
-offset_left = -248.0
-offset_top = -256.0
-offset_right = -238.0
-offset_bottom = -233.0
-text = "0"
-label_settings = SubResource("LabelSettings_idma6")
-
-[node name="PlayButton" type="Button" parent="GUI"]
-layout_mode = 0
-offset_left = -178.0
-offset_top = -97.0
-offset_right = -77.0
-offset_bottom = -66.0
-text = "Play"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(384, 384)
@@ -61,4 +33,5 @@ zoom = Vector2(4, 4)
 
 [connection signal="OnDie" from="Player" to="." method="OnPlayerDie"]
 [connection signal="OnIncrementScore" from="Player" to="." method="OnPlayerIncrementScore"]
-[connection signal="button_up" from="GUI/PlayButton" to="." method="OnPlayButtonClicked"]
+[connection signal="OnPlayButtonClicked" from="GUI" to="." method="OnStart"]
+[connection signal="OnResetButtonClicked" from="GUI" to="." method="OnReset"]

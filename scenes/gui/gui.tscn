@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://blco7lr57qqef"]
+
+[ext_resource type="Script" path="res://scenes/gui/GUI.cs" id="1_1sd7h"]
+[ext_resource type="FontFile" uid="uid://bd65r0m3dcl36" path="res://assets/fonts/OpenSans-VariableFont_wdth,wght.ttf" id="1_pafhi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_idma6"]
+font = ExtResource("1_pafhi")
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 640.0
+offset_top = 640.0
+offset_right = 640.0
+offset_bottom = 640.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_1sd7h")
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = -248.0
+offset_top = -256.0
+offset_right = -238.0
+offset_bottom = -233.0
+text = "0"
+label_settings = SubResource("LabelSettings_idma6")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -178.0
+offset_top = -97.0
+offset_right = -77.0
+offset_bottom = -66.0
+text = "Play"
+
+[node name="ResetButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -178.0
+offset_top = -97.0
+offset_right = -77.0
+offset_bottom = -66.0
+text = "Play Again"
+
+[connection signal="button_up" from="PlayButton" to="." method="OnClickPlayButton"]
+[connection signal="button_up" from="ResetButton" to="." method="OnClickResetButton"]

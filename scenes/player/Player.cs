@@ -1,10 +1,12 @@
 using Godot;
 using System;
+using System.Collections;
 
 public partial class Player : RigidBody2D
 {
 	private bool isIdle;
 	private bool isAlive;
+	private Vector2 startPosition;
 	private AnimationPlayer Animation;
 
 	[Export]
@@ -45,6 +47,7 @@ public partial class Player : RigidBody2D
 	{
 		this.isIdle = true;
 		this.isAlive = true;
+		this.startPosition = new Vector2(GlobalPosition.X, GlobalPosition.Y);
 		this.Animation = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
@@ -73,12 +76,17 @@ public partial class Player : RigidBody2D
 	}
 
 	public void Reset() {
-		this.GlobalPosition = new Vector2(512, 512);
+		QueueFree();
+		QueueRedraw();
+		this.GlobalPosition = this.startPosition;
+		this.score = 0;
+		this.Idle(false);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		ReadFlapActions();
+		GD.Print(startPosition);
 	}
 }

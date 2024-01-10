@@ -24,7 +24,7 @@ public partial class PipeFactory : Marker2D
 	private void SpawnPipes()
 	{
 		Node2D Pipes = BluePipes.Instantiate<Node2D>();
-		Pipes.Position = GetRandomPosition();
+		Pipes.GlobalPosition = GetRandomPosition();
 		AddChild(Pipes, true);
 	}
 
@@ -42,5 +42,13 @@ public partial class PipeFactory : Marker2D
 	public void Stop()
 	{
 		SpawnTimer.Stop();
+	}
+
+	public void Reset() {
+		var Pipes = GetChildren();
+		foreach (var Pipe in Pipes) {
+			Pipe.QueueFree();
+		}
+		Start();
 	}
 }
