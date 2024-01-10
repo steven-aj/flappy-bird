@@ -7,13 +7,14 @@ public partial class PipeFactory : Marker2D
 	PackedScene BluePipes;
 
     [Export]
-	double minYOffset = -100;
+    public int spawnDelay = 1000;
+
+    [ExportGroup("Y-axis Offset Range")]
+    [Export]
+	double minOffset = -100;
 
 	[Export]
-	double maxYOffset = 100;
-
-	[Export]
-	public int spawnDelay = 1000;
+	double maxOffset = 100;
 
     public override void _Ready()
     {
@@ -23,7 +24,7 @@ public partial class PipeFactory : Marker2D
     private Vector2 GetRandomPosition()
 	{
 		float xPos = Position.X;
-		float yPos = (float)GD.RandRange(minYOffset, maxYOffset);
+		float yPos = (float)GD.RandRange(minOffset, maxOffset);
 		return new Vector2(xPos, yPos);
 	}
 

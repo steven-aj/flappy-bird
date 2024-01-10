@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dod72pmlkbhxe" path="res://assets/graphics/Background/Background4.png" id="4_t64r6"]
 [ext_resource type="Texture2D" uid="uid://3gccq6l6t657" path="res://assets/graphics/Background/Background5.png" id="5_vtr8r"]
 
+[sub_resource type="Animation" id="Animation_60obh"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_m7a72"]
 resource_name = "time_cycle"
 length = 150.0
@@ -72,9 +75,6 @@ tracks/4/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_60obh"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r4a3v"]
 _data = {
 "RESET": SubResource("Animation_60obh"),
@@ -84,10 +84,11 @@ _data = {
 [node name="Background" type="Node2D"]
 
 [node name="Night" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.5)
 texture = ExtResource("4_t64r6")
 
 [node name="Evening" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.5)
 texture = ExtResource("3_v0fli")
 
 [node name="Afternoon" type="Sprite2D" parent="."]
@@ -95,6 +96,7 @@ modulate = Color(1, 1, 1, 0)
 texture = ExtResource("2_wfg0y")
 
 [node name="LateNight" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("5_vtr8r")
 
 [node name="Morning" type="Sprite2D" parent="."]

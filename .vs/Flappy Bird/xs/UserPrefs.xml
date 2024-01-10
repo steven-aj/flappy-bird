@@ -1,18 +1,30 @@
 ﻿<Properties>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="scenes/player/Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="components/pipe-factory/PipeFactory.cs">
     <Files>
-      <File FileName="scenes/player/Player.cs" Line="14" Column="59" />
+      <File FileName="scenes/Game.cs" Line="19" Column="3" />
+      <File FileName="scenes/pipes/Pipes.cs" Line="4" Column="36" />
+      <File FileName="scenes/player/Player.cs" />
+      <File FileName="components/score-zone/ScoreZone.cs" />
+      <File FileName="components/pipe-factory/PipeFactory.cs" Line="21" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Flappy Bird">
-            <Node name="Flappy Bird" expanded="True">
-              <Node name="scenes" expanded="True">
-                <Node name="player" expanded="True">
-                  <Node name="Player.cs" selected="True" />
+            <Node name="Flappy Bird">
+              <Node name="components">
+                <Node name="pipe-factory">
+                  <Node name="PipeFactory.cs" selected="True" />
                 </Node>
+              </Node>
+              <Node name="scenes" expanded="True">
+                <Node name="pipes" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -20,9 +32,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -1,17 +1,17 @@
 using Godot;
 using System;
 
-public partial class Game : Node2D
+public partial class Game : Node
 {
 	private Player Player;
-	private CanvasLayer GUI;
+	private Control GUI;
 	private RichTextLabel ScoreUI;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		Player = GetNode<Player>("Player");
-		GUI = GetNode<CanvasLayer>("GUI");
+		GUI = GetNode<Control>("GUI");
 		ScoreUI = GUI.GetNode<RichTextLabel>("ScoreUI");
 	}
 
