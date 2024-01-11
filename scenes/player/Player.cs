@@ -77,8 +77,12 @@ public partial class Player : RigidBody2D
 		}
 	}
 
+	public void FallOutOfBounds() {
+		this.isAlive = false;
+		EmitSignal(SignalName.OnDie, this);
+	}
+
 	public void Reset() {
-		RotationDegrees = 0;
 		this.score = 0;
 		this.isAlive = true;
 		this.doReset = true;

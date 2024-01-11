@@ -39,13 +39,14 @@ public partial class Game : Node
 	}
 
 	public void OnPlayerDie(Player Player) {
-		GUI.EndGame();
+		GUI.EndGame(Player);
 		PipeFactory.Stop();
 	}
 
-	public void OnPlayerEnteredKillBounds(Node2D KillBoundsArea) {
+	public void OnPlayerEnteredKillBounds(Node2D Body) {
+		GUI.EndGame((Player)Body);
 		PipeFactory.Stop();
-		Player.Die(KillBoundsArea);
+		Player.FallOutOfBounds();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

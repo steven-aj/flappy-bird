@@ -4,6 +4,7 @@ using System;
 public partial class GUI : Control
 {
 	private Label ScoreLabel;
+	private Label FinalScoreLabel;
 	private Button PlayButton;
 	private Button ResetButton;
 
@@ -17,6 +18,7 @@ public partial class GUI : Control
 	public override void _Ready()
 	{
 		ScoreLabel = GetNode<Label>("ScoreLabel");
+		FinalScoreLabel = GetNode<Label>("FinalScoreLabel");
 		PlayButton = GetNode<Button>("PlayButton");
 		ResetButton = GetNode<Button>("ResetButton");
 	}
@@ -36,12 +38,15 @@ public partial class GUI : Control
 		ScoreLabel.Text = Player.score.ToString();
 	}
 
-	public void EndGame() {
+	public void EndGame(Player Player) {
+		FinalScoreLabel.Text = "Final Score: " + Player.score;
+		FinalScoreLabel.Visible = true;
 		ResetButton.Visible = true;
 	}
 
 	public void Reset() {
 		ScoreLabel.Text = "0";
+		FinalScoreLabel.Visible = false;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
