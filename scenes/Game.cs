@@ -28,6 +28,7 @@ public partial class Game : Node
 	}
 
 	public void OnReset() {
+		GUI.Reset();
 		Player.Reset();
 		PipeFactory.Reset();
 	}
@@ -38,8 +39,13 @@ public partial class Game : Node
 	}
 
 	public void OnPlayerDie(Player Player) {
-		ResetButton.Visible = true;
+		GUI.EndGame();
 		PipeFactory.Stop();
+	}
+
+	public void OnPlayerEnteredKillBounds(Node2D KillBoundsArea) {
+		PipeFactory.Stop();
+		Player.Die(KillBoundsArea);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

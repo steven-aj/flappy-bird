@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://byg2fdu8w5dfi"]
+[gd_scene load_steps=7 format=3 uid="uid://byg2fdu8w5dfi"]
 
 [ext_resource type="Script" path="res://scenes/Game.cs" id="1_2xnd4"]
 [ext_resource type="PackedScene" uid="uid://dex5tjdfuno1i" path="res://scenes/player/player.tscn" id="1_b7elv"]
+[ext_resource type="PackedScene" uid="uid://iv0j5pnj36gq" path="res://components/kill-bounds/kill_bounds.tscn" id="3_qafrj"]
 [ext_resource type="PackedScene" uid="uid://e01710jfvdop" path="res://scenes/background/background.tscn" id="5_3joe7"]
 [ext_resource type="PackedScene" uid="uid://b2h2iptvfgoew" path="res://components/pipe-factory/pipe_factory.tscn" id="5_boirt"]
 [ext_resource type="PackedScene" uid="uid://blco7lr57qqef" path="res://scenes/gui/gui.tscn" id="5_kl0mx"]
@@ -15,13 +16,16 @@ metadata/_edit_horizontal_guides_ = [384.0]
 position = Vector2(512, 512)
 metadata/_edit_lock_ = true
 
+[node name="KillBounds" parent="." instance=ExtResource("3_qafrj")]
+position = Vector2(512, 512)
+
+[node name="PipeFactory" parent="." instance=ExtResource("5_boirt")]
+position = Vector2(384, 512)
+
 [node name="Player" parent="." instance=ExtResource("1_b7elv")]
 position = Vector2(512, 512)
 flapStrength = 110
 metadata/_edit_lock_ = true
-
-[node name="PipeFactory" parent="." instance=ExtResource("5_boirt")]
-position = Vector2(384, 512)
 
 [node name="GUI" parent="." instance=ExtResource("5_kl0mx")]
 unique_name_in_owner = true
@@ -31,6 +35,7 @@ offset = Vector2(384, 384)
 anchor_mode = 0
 zoom = Vector2(4, 4)
 
+[connection signal="OnEnterKillBounds" from="KillBounds" to="." method="OnPlayerEnteredKillBounds"]
 [connection signal="OnDie" from="Player" to="." method="OnPlayerDie"]
 [connection signal="OnIncrementScore" from="Player" to="." method="OnPlayerIncrementScore"]
 [connection signal="OnPlayButtonClicked" from="GUI" to="." method="OnStart"]

@@ -37,6 +37,7 @@ public partial class PipeFactory : Marker2D
 	{
 		SpawnPipes();
 		SpawnTimer.Start();
+		SpawnTimer.WaitTime = 3;
 	}
 
 	public void Stop()
@@ -44,10 +45,14 @@ public partial class PipeFactory : Marker2D
 		SpawnTimer.Stop();
 	}
 
-	public void Reset() {
-		var Pipes = GetChildren();
-		foreach (var Pipe in Pipes) {
-			Pipe.QueueFree();
+	public void Reset()
+	{
+		foreach (var Node in GetChildren())
+		{
+			if (Node.Name != "SpawnTimer")
+			{
+				Node.QueueFree();
+			}
 		}
 		Start();
 	}

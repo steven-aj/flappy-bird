@@ -36,6 +36,10 @@ public partial class GUI : Control
 		ScoreLabel.Text = Player.score.ToString();
 	}
 
+	public void EndGame() {
+		ResetButton.Visible = true;
+	}
+
 	public void Reset() {
 		ScoreLabel.Text = "0";
 	}

@@ -1,11 +1,13 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Threading;
 
 public partial class Player : RigidBody2D
 {
+	public bool isAlive;
 	private bool isIdle;
-	private bool isAlive;
+	private bool doReset;
 	private Vector2 startPosition;
 	private AnimationPlayer Animation;
 
@@ -68,7 +70,7 @@ public partial class Player : RigidBody2D
 
 	public void Die(Node2D Body)
 	{
-		if (Body.Name == "TileMap")
+		if (Body.Name != "Player")
 		{
 			this.isAlive = false;
 			EmitSignal(SignalName.OnDie, this);
@@ -76,10 +78,10 @@ public partial class Player : RigidBody2D
 	}
 
 	public void Reset() {
-		QueueFree();
-		QueueRedraw();
-		this.GlobalPosition = this.startPosition;
+		RotationDegrees = 0;
 		this.score = 0;
+		this.isAlive = true;
+		this.doReset = true;
 		this.Idle(false);
 	}
 
@@ -87,6 +89,15 @@ public partial class Player : RigidBody2D
 	public override void _Process(double delta)
 	{
 		ReadFlapActions();
-		GD.Print(startPosition);
 	}
+
+    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+    {
+		if (doReset) {
+			RotationDegrees = 0;
+			GlobalTransform = new Transform2D(0, startPosition);
+			LinearVelocity = new Vector2(0, 0);
+			doReset = false;
+		}
+    }
 }
